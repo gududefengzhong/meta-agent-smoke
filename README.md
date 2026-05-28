@@ -22,6 +22,12 @@ For that reason this repo uses:
 - `case/py-slugify-normalization`
 - `case/py-parse-bool`
 - `case/py-mutable-default`
+- `case/py-file-write-parent-dir`
+- `case/py-json-enabled-normalization`
+- `case/py-next-billing-date`
+- `case/py-safe-join-traversal`
+- `case/py-compress-ranges-duplicates`
+- `case/py-csv-quoted-fields`
 
 ## Submit payload template
 
@@ -111,6 +117,84 @@ For that reason this repo uses:
   "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
   "base_ref": "case/py-mutable-default",
   "target_files": ["accumulator.py", "tests/test_accumulator.py"],
+  "verify_suite": "python_test",
+  "model": "deepseek/deepseek-v4-pro"
+}
+```
+
+### `case/py-file-write-parent-dir`
+
+```json
+{
+  "issue_description": "Fix write_report so it creates missing parent directories before writing the UTF-8 report file.",
+  "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
+  "base_ref": "case/py-file-write-parent-dir",
+  "target_files": ["report_store.py", "tests/test_report_store.py"],
+  "verify_suite": "python_test",
+  "model": "deepseek/deepseek-v4-pro"
+}
+```
+
+### `case/py-json-enabled-normalization`
+
+```json
+{
+  "issue_description": "Fix parse_event so JSON payload fields are normalized correctly: string booleans like \"false\" should become False, and string retry counts should become integers.",
+  "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
+  "base_ref": "case/py-json-enabled-normalization",
+  "target_files": ["event_parser.py", "tests/test_event_parser.py"],
+  "verify_suite": "python_test",
+  "model": "deepseek/deepseek-v4-pro"
+}
+```
+
+### `case/py-next-billing-date`
+
+```json
+{
+  "issue_description": "Fix next_billing_date so monthly renewal keeps the same day-of-month when possible and clamps to the end of shorter months, including leap-year February.",
+  "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
+  "base_ref": "case/py-next-billing-date",
+  "target_files": ["billing.py", "tests/test_billing.py"],
+  "verify_suite": "python_test",
+  "model": "deepseek/deepseek-v4-pro"
+}
+```
+
+### `case/py-safe-join-traversal`
+
+```json
+{
+  "issue_description": "Fix safe_join so it rejects path traversal and absolute paths instead of allowing callers to escape the provided root directory.",
+  "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
+  "base_ref": "case/py-safe-join-traversal",
+  "target_files": ["paths.py", "tests/test_paths.py"],
+  "verify_suite": "python_test",
+  "model": "deepseek/deepseek-v4-pro"
+}
+```
+
+### `case/py-compress-ranges-duplicates`
+
+```json
+{
+  "issue_description": "Fix compress_ranges so duplicated numbers do not cause a hang. The function should merge consecutive values and tolerate duplicates without entering an infinite loop.",
+  "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
+  "base_ref": "case/py-compress-ranges-duplicates",
+  "target_files": ["ranges.py", "tests/test_ranges.py"],
+  "verify_suite": "python_test",
+  "model": "deepseek/deepseek-v4-pro"
+}
+```
+
+### `case/py-csv-quoted-fields`
+
+```json
+{
+  "issue_description": "Fix parse_csv_row so commas inside quoted CSV fields are preserved instead of splitting the field in the middle.",
+  "repo_url": "https://github.com/gududefengzhong/meta-agent-smoke.git",
+  "base_ref": "case/py-csv-quoted-fields",
+  "target_files": ["csv_reader.py", "tests/test_csv_reader.py"],
   "verify_suite": "python_test",
   "model": "deepseek/deepseek-v4-pro"
 }
