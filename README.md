@@ -33,6 +33,11 @@ For that reason this repo uses:
 - `case/py-shell-command-quoting`
 - `case/py-recent-window-naive-utc`
 - `case/py-page-slice-has-more`
+- `case/py-webhook-signature-canonical-json`
+- `case/py-idempotency-key-stable-tags`
+- `case/py-budget-round-up-micros`
+- `case/py-redact-bearer-case-insensitive`
+- `case/py-merge-chunks-finish-reason`
 
 ## Coverage
 
@@ -65,6 +70,14 @@ failure modes without cross-test contamination.
 - shell quoting for subprocess commands
 - timezone-aware / naive datetime handling
 - pagination contract correctness
+
+### Batch 4: agent-platform and integration bugs
+
+- webhook signature canonicalization
+- idempotency key stability
+- budget / cost rounding
+- secret redaction semantics
+- streaming chunk merge correctness
 
 The machine-readable source of truth for all cases lives in
 [`catalog/cases.json`](catalog/cases.json).

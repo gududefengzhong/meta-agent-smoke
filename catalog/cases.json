@@ -117,5 +117,40 @@
     "categories": ["pagination", "api-contracts"],
     "issue_description": "Fix slice_page so has_more and next_cursor are correct on the final full page; it should not advertise another page when the current page already reaches the end.",
     "target_files": ["pagination.py", "tests/test_pagination.py"]
+  },
+  {
+    "case": "case/py-webhook-signature-canonical-json",
+    "batch": "fourth",
+    "categories": ["webhooks", "signatures", "integrations"],
+    "issue_description": "Fix compute_signature so semantically identical JSON payloads produce the same HMAC signature. The payload should be canonicalized before signing instead of depending on key insertion order or whitespace.",
+    "target_files": ["webhook_signing.py", "tests/test_webhook_signing.py"]
+  },
+  {
+    "case": "case/py-idempotency-key-stable-tags",
+    "batch": "fourth",
+    "categories": ["idempotency", "deduplication", "consistency"],
+    "issue_description": "Fix build_idempotency_key so the same logical tag set produces a stable key regardless of input ordering or duplicates.",
+    "target_files": ["idempotency.py", "tests/test_idempotency.py"]
+  },
+  {
+    "case": "case/py-budget-round-up-micros",
+    "batch": "fourth",
+    "categories": ["budgeting", "cost-accounting", "rounding"],
+    "issue_description": "Fix accumulate_cost_micros so fractional USD costs are rounded up to whole micros instead of being truncated away.",
+    "target_files": ["budgeting.py", "tests/test_budgeting.py"]
+  },
+  {
+    "case": "case/py-redact-bearer-case-insensitive",
+    "batch": "fourth",
+    "categories": ["security", "redaction", "secrets"],
+    "issue_description": "Fix redact_authorization so Bearer tokens are redacted case-insensitively and only the secret value is replaced, preserving the scheme prefix.",
+    "target_files": ["redaction.py", "tests/test_redaction.py"]
+  },
+  {
+    "case": "case/py-merge-chunks-finish-reason",
+    "batch": "fourth",
+    "categories": ["streaming", "chunk-assembly", "api-contracts"],
+    "issue_description": "Fix merge_chunks so it keeps the first non-null finish_reason seen in a stream instead of overwriting it with later null chunks.",
+    "target_files": ["stream_merge.py", "tests/test_stream_merge.py"]
   }
 ]
