@@ -28,6 +28,69 @@ For that reason this repo uses:
 - `case/py-safe-join-traversal`
 - `case/py-compress-ranges-duplicates`
 - `case/py-csv-quoted-fields`
+- `case/py-http-retry-policy`
+- `case/py-template-cache-version`
+- `case/py-shell-command-quoting`
+- `case/py-recent-window-naive-utc`
+- `case/py-page-slice-has-more`
+
+## Coverage
+
+This repo intentionally spreads bug categories across small, single-purpose
+branches so `meta-agent` can be exercised against more realistic engineering
+failure modes without cross-test contamination.
+
+### Batch 1: core code-fix primitives
+
+- output formatting / string formatting
+- input validation / business rules
+- boundary conditions / numeric logic
+- text normalization
+- config parsing
+- Python mutable state pitfalls
+
+### Batch 2: repository-local engineering bugs
+
+- file I/O and parent-directory handling
+- JSON / config normalization
+- date and leap-year boundaries
+- path traversal safety
+- non-termination / performance pathologies
+- CSV / serialization parsing
+
+### Batch 3: more production-shaped engineering bugs
+
+- HTTP retry policy
+- cache staleness and version invalidation
+- shell quoting for subprocess commands
+- timezone-aware / naive datetime handling
+- pagination contract correctness
+
+The machine-readable source of truth for all cases lives in
+[`catalog/cases.json`](catalog/cases.json).
+
+## Command generator
+
+Do not hand-maintain submit commands for every case. Use the generator instead:
+
+```bash
+python scripts/render_submit_commands.py --format list
+```
+
+Examples:
+
+```bash
+# render submit commands for every third-batch case
+python scripts/render_submit_commands.py --batch third
+
+# render only security and performance-oriented cases
+python scripts/render_submit_commands.py --category security --category performance
+
+# render just one payload JSON block
+python scripts/render_submit_commands.py \
+  --case case/py-safe-join-traversal \
+  --format payload
+```
 
 ## Submit payload template
 
@@ -43,6 +106,9 @@ For that reason this repo uses:
 ```
 
 ## Ready-to-run payloads
+
+The sections below are examples. The generator script above is the preferred
+way to produce current `meta_agent.cli submit` commands.
 
 ### `case/py-greet-format`
 

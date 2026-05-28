@@ -1,0 +1,121 @@
+[
+  {
+    "case": "case/py-greet-format",
+    "batch": "first",
+    "categories": ["output-format", "string-formatting"],
+    "issue_description": "The greeting output format is wrong. Fix it so greet(\"world\") returns \"Hello, world!\" and greet(\"Alice\") returns \"Hello, Alice!\".",
+    "target_files": ["greet.py", "tests/test_greet.py"]
+  },
+  {
+    "case": "case/py-discount-validation",
+    "batch": "first",
+    "categories": ["input-validation", "business-rules"],
+    "issue_description": "Add input validation for discount_percent. Values below 0 or above 100 must raise ValueError, and the error message should mention discount_percent.",
+    "target_files": ["discount.py", "tests/test_discount.py"]
+  },
+  {
+    "case": "case/py-clamp-boundary",
+    "batch": "first",
+    "categories": ["boundary-conditions", "numeric-logic"],
+    "issue_description": "Fix the clamp boundary logic so values exactly on the max boundary and above the max boundary both return max_value.",
+    "target_files": ["clamp.py", "tests/test_clamp.py"]
+  },
+  {
+    "case": "case/py-slugify-normalization",
+    "batch": "first",
+    "categories": ["text-normalization", "string-processing"],
+    "issue_description": "Fix slugify normalization. It should trim outer whitespace, collapse repeated spaces, lowercase the text, and join words with single hyphens.",
+    "target_files": ["slugify.py", "tests/test_slugify.py"]
+  },
+  {
+    "case": "case/py-parse-bool",
+    "batch": "first",
+    "categories": ["config-parsing", "string-normalization"],
+    "issue_description": "Fix parse_bool so it accepts common boolean string forms like true/false, 1/0, yes/no, and raises ValueError for unknown inputs.",
+    "target_files": ["parse_bool.py", "tests/test_parse_bool.py"]
+  },
+  {
+    "case": "case/py-mutable-default",
+    "batch": "first",
+    "categories": ["python-runtime", "state-leak"],
+    "issue_description": "Fix the state leak caused by a mutable default argument. Each call should behave independently unless an explicit list is passed in.",
+    "target_files": ["accumulator.py", "tests/test_accumulator.py"]
+  },
+  {
+    "case": "case/py-file-write-parent-dir",
+    "batch": "second",
+    "categories": ["file-io", "filesystem"],
+    "issue_description": "Fix write_report so it creates missing parent directories before writing the UTF-8 report file.",
+    "target_files": ["report_store.py", "tests/test_report_store.py"]
+  },
+  {
+    "case": "case/py-json-enabled-normalization",
+    "batch": "second",
+    "categories": ["json-parsing", "config-normalization"],
+    "issue_description": "Fix parse_event so JSON payload fields are normalized correctly: string booleans like \"false\" should become False, and string retry counts should become integers.",
+    "target_files": ["event_parser.py", "tests/test_event_parser.py"]
+  },
+  {
+    "case": "case/py-next-billing-date",
+    "batch": "second",
+    "categories": ["date-boundary", "calendar-logic"],
+    "issue_description": "Fix next_billing_date so monthly renewal keeps the same day-of-month when possible and clamps to the end of shorter months, including leap-year February.",
+    "target_files": ["billing.py", "tests/test_billing.py"]
+  },
+  {
+    "case": "case/py-safe-join-traversal",
+    "batch": "second",
+    "categories": ["security", "path-traversal"],
+    "issue_description": "Fix safe_join so it rejects path traversal and absolute paths instead of allowing callers to escape the provided root directory.",
+    "target_files": ["paths.py", "tests/test_paths.py"]
+  },
+  {
+    "case": "case/py-compress-ranges-duplicates",
+    "batch": "second",
+    "categories": ["performance", "non-termination", "control-flow"],
+    "issue_description": "Fix compress_ranges so duplicated numbers do not cause a hang. The function should merge consecutive values and tolerate duplicates without entering an infinite loop.",
+    "target_files": ["ranges.py", "tests/test_ranges.py"]
+  },
+  {
+    "case": "case/py-csv-quoted-fields",
+    "batch": "second",
+    "categories": ["csv-parsing", "serialization"],
+    "issue_description": "Fix parse_csv_row so commas inside quoted CSV fields are preserved instead of splitting the field in the middle.",
+    "target_files": ["csv_reader.py", "tests/test_csv_reader.py"]
+  },
+  {
+    "case": "case/py-http-retry-policy",
+    "batch": "third",
+    "categories": ["http-clients", "retry-policy"],
+    "issue_description": "Fix should_retry so it retries transient statuses like 429 and 503 only while retry budget remains, and it never retries auth failures like 401.",
+    "target_files": ["retry_policy.py", "tests/test_retry_policy.py"]
+  },
+  {
+    "case": "case/py-template-cache-version",
+    "batch": "third",
+    "categories": ["caching", "staleness", "consistency"],
+    "issue_description": "Fix render_template so cache entries are invalidated when the template version changes instead of serving stale content by name only.",
+    "target_files": ["template_cache.py", "tests/test_template_cache.py"]
+  },
+  {
+    "case": "case/py-shell-command-quoting",
+    "batch": "third",
+    "categories": ["subprocess", "shell-quoting"],
+    "issue_description": "Fix build_archive_command so paths containing spaces are shell-quoted correctly and remain single arguments when parsed by a shell.",
+    "target_files": ["commands.py", "tests/test_commands.py"]
+  },
+  {
+    "case": "case/py-recent-window-naive-utc",
+    "batch": "third",
+    "categories": ["timezones", "datetime-handling"],
+    "issue_description": "Fix is_recent so naive ISO8601 timestamps are interpreted as UTC instead of crashing when compared with timezone-aware UTC datetimes.",
+    "target_files": ["recent.py", "tests/test_recent.py"]
+  },
+  {
+    "case": "case/py-page-slice-has-more",
+    "batch": "third",
+    "categories": ["pagination", "api-contracts"],
+    "issue_description": "Fix slice_page so has_more and next_cursor are correct on the final full page; it should not advertise another page when the current page already reaches the end.",
+    "target_files": ["pagination.py", "tests/test_pagination.py"]
+  }
+]
